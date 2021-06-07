@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, StyleSheet, Button, Text, Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, Button, Text, Image, Dimensions, ScrollView, SafeAreaView} from 'react-native';
 
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
@@ -8,25 +8,25 @@ import MainButton from '../components/MainButton';
 
 const GameOverScreen = props => {
     return (
-        <View style = {styles.screen}>
-            <TitleText>The Game is Over!</TitleText>
-            <View style={styles.imageContainer}>
-                <Image  
+        <SafeAreaView>
+            <ScrollView>
+                <View style = {styles.screen}>
+                    <TitleText>The Game is Over!</TitleText>
+                    <View style={styles.imageContainer}>
+                    <Image  
                 // source={('../assets/reactApp.png')}  */}
-                source={{uri: 'https://q-xx.bstatic.com/images/hotel/max1024x768/224/224447518.jpg'}} 
-                style={styles.image} resizeMode="cover"/>
-        </View>
-        <View style={styles.resultContainer}>
-            <BodyText style={styles.resultText}>Your phone needed{''} <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to the guess the number {''}<Text style={styles.highlight}>{props.userNumber}</Text>.</BodyText>
-
-        </View>
-            
-
-            
-            <MainButton onPress={props.onRestart}>
-                NEW GAME
-            </MainButton>
-        </View>
+                     source={{uri: 'https://q-xx.bstatic.com/images/hotel/max1024x768/224/224447518.jpg'}} 
+                     style={styles.image} resizeMode="cover"/>
+                    </View>
+                    <View style={styles.resultContainer}>
+                    <BodyText style={styles.resultText}>Your phone needed{''} <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to the guess the number {''}<Text style={styles.highlight}>{props.userNumber}</Text>.</BodyText>
+                   </View>
+                   <MainButton onPress={props.onRestart}>
+                     NEW GAME
+                  </MainButton>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 
 };
@@ -36,16 +36,17 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent: 'center',
         alignItems: 'center',
-        fontFamily: 'OpenSans-Bold'
+        fontFamily: 'OpenSans-Bold',
+        paddingVertical: 10
     },
     imageContainer:{
-        width: 300,
-        height: 300,
-        borderRadius: 150,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').width * 0.7,
+        borderRadius: Dimensions.get('window').width * 0.7/2,
         borderWidth: 3,
         borderColor: 'black',
-         overflow: 'hidden',
-         marginVertical: 30
+        overflow: 'hidden',
+        marginVertical: Dimensions.get('window').height/ 30
 
     },
     image: {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     },
     resultContainer: {
         marginHorizontal: 20,
-        marginVertical: 15
+        marginVertical: Dimensions.get('window').height/60
         
     },
     highlight: {
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     },
     resultText: {
         textAlign: 'center',
-        fontSize: 20
+        fontSize: Dimensions.get('window').height<400? 16: 20
     }
 
 });

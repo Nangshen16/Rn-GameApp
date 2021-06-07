@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
 
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -70,13 +70,11 @@ export default function App() {
 
 
     return ( 
-        <View style = {styles.screen} >
-            <Header title="What's my number"/>
-            
-            {content}
-            
-
-        </View>
+        <SafeAreaView style = {styles.screen}>
+        
+             <Header title="What's my number"/>
+             {content} 
+        </SafeAreaView>
     );
 }
 
